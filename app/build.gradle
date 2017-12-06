@@ -28,10 +28,21 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'com.android.support:design:25.0.0'
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.android.support:recyclerview-v7:25.2.0'
+    compile 'com.android.support:support-v4:25.0.0'
+
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.6'
     testCompile 'junit:junit:4.12'
 
-    compile 'com.jude:easyrecyclerview:4.4.2'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.1.0'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-navi:2.1.0'
+    //view框架
+    compile 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    //ripple
+    compile 'com.github.traex.rippleeffect:library:1.3'
 }

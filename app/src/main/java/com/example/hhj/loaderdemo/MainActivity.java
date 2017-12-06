@@ -12,8 +12,9 @@ import com.example.hhj.loaderdemo.presenter.MainPresenter;
 import com.example.hhj.loaderdemo.presenter.Presenter;
 import com.example.hhj.loaderdemo.presenter.PresenterLoader;
 import com.example.hhj.loaderdemo.presenter.SomeFactoryImpl;
+import com.example.hhj.loaderdemo.theme.base.BaseSkinActivity;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<MainPresenter> {
+public class MainActivity extends BaseSkinActivity implements LoaderManager.LoaderCallbacks<MainPresenter> {
     static  final String TAG=MainActivity.class.getSimpleName();
     private static final int LOADER_ID = 101;
     private Presenter presenter;
