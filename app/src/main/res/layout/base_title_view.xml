@@ -4,14 +4,16 @@
     app:layout_scrollFlags="scroll|enterAlways"
     android:background="@color/colorPrimary"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/title_bar_icon_width"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <RelativeLayout
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize">
+    <com.andexert.library.RippleView
         app:rv_rippleDuration="@integer/rippleDuration"
         android:layout_centerVertical="true"
         android:id="@+id/btn_left_base"
-        android:layout_width="50dp"
+        android:layout_width="?attr/actionBarSize"
         android:layout_height="match_parent"
         rv_centered="true">
 
@@ -24,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-    </RelativeLayout>
+    </com.andexert.library.RippleView>
 
     <RelativeLayout
         android:layout_marginBottom="5dp"
@@ -55,7 +57,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:id="@+id/btn_right_base"
-        android:layout_width="50dp"
+        android:layout_width="?attr/actionBarSize"
         android:layout_height="match_parent"
         rv_centered="true">
         <TextView
@@ -68,5 +70,5 @@
             android:layout_height="wrap_content" />
 
     </com.andexert.library.RippleView>
-
+</RelativeLayout>
     </RelativeLayout>

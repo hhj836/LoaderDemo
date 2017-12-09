@@ -1,40 +1,58 @@
 package com.example.hhj.loaderdemo;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.hhj.loaderdemo.activity.CollapsingTestActivity;
+import com.example.hhj.loaderdemo.base.BaseViewActivity;
 import com.example.hhj.loaderdemo.presenter.MainPresenter;
 import com.example.hhj.loaderdemo.presenter.Presenter;
 import com.example.hhj.loaderdemo.presenter.PresenterLoader;
 import com.example.hhj.loaderdemo.presenter.SomeFactoryImpl;
-import com.example.hhj.loaderdemo.theme.base.BaseSkinActivity;
 
-public class MainActivity extends BaseSkinActivity implements LoaderManager.LoaderCallbacks<MainPresenter> {
+import butterknife.BindView;
+import butterknife.OnClick;
+
+public class MainActivity extends BaseViewActivity implements LoaderManager.LoaderCallbacks<MainPresenter> {
     static  final String TAG=MainActivity.class.getSimpleName();
     private static final int LOADER_ID = 101;
     private Presenter presenter;
+    @BindView(R.id.tv)
     TextView  textView;
+    @OnClick(R.id.btn)
+    public void onBnClick(){
+        startActivity(new Intent().setClass(MainActivity.this,CollapsingTestActivity.class));
+
+    }
+    @Override
+    public boolean isSlideTitleBar() {
+        return true;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        textView= (TextView) findViewById(R.id.tv);
-        if(savedInstanceState==null){
-            Log.e(TAG,"MainActivity--初始化");
-        }else {
-            Log.e(TAG,"savedInstanceState--非空");
-        }
-        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+    public int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void initView() {
+
     }
     public void showNum(int num){
         textView.setText(num+"");
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getSupportLoaderManager().initLoader(LOADER_ID,null,MainActivity.this);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -107,4 +125,6 @@ public class MainActivity extends BaseSkinActivity implements LoaderManager.Load
         Log.e(TAG,"MainActivity--onLoaderReset");
         presenter.onDestroyed();
     }
+
+
 }

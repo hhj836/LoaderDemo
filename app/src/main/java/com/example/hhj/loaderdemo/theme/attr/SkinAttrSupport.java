@@ -27,8 +27,12 @@ public class SkinAttrSupport
             if (attrValue.startsWith("@"))
             {
                 int id = Integer.parseInt(attrValue.substring(1));
-                String entryName = context.getResources().getResourceEntryName(id);
+                String entryName="";
+                try {
+                    entryName = context.getResources().getResourceEntryName(id);
+                }catch (Exception e){
 
+                }
               //  L.e("entryName = " + entryName);
                 if (entryName.startsWith(SkinConfig.ATTR_PREFIX))
                 {
