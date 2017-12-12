@@ -103,7 +103,7 @@ public abstract  class BaseViewActivity extends BaseSkinActivity {
                 btn_left_base.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
                     @Override
                     public void onComplete(RippleView rippleView) {
-                        finish();
+                       // finish();
                     }
                 });
                 btn_right_base=(RippleView) findViewById(R.id.btn_right_base);

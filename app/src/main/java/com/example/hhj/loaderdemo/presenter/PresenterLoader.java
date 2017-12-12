@@ -14,10 +14,10 @@ import com.example.hhj.loaderdemo.base.PresenterUtils;
  */
 
 
-public class PresenterLoader<P extends Presenter,ViewType> extends Loader<P> {
+public class PresenterLoader<P extends Presenter> extends Loader<P> {
 
     private P presenter;
-    private ViewType view;
+    private Object view;
     private  Bundle bundle;
     public  P getPresenter(){
         return  presenter;
@@ -32,7 +32,7 @@ public class PresenterLoader<P extends Presenter,ViewType> extends Loader<P> {
      *
      * @param context used to retrieve the application context.
      */
-    public PresenterLoader(Context context,ViewType view,Bundle bundle) {
+    public PresenterLoader(Context context,Object view,Bundle bundle) {
         super(context);
         this.view=view;
         this.bundle=bundle;

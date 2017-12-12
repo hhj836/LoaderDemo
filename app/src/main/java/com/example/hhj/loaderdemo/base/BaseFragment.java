@@ -11,7 +11,7 @@ import com.example.hhj.loaderdemo.presenter.ViewHelper;
  */
 
 public  abstract class BaseFragment<P extends Presenter> extends BaseViewFragment {
-    private ViewHelper<P,BaseFragment>  viewHelper=new ViewHelper(BaseFragment.this);
+    private ViewHelper<P>  viewHelper=new ViewHelper(BaseFragment.this);
     public P getPresenter(){
         return viewHelper.getPresenter();
     }
@@ -20,6 +20,12 @@ public  abstract class BaseFragment<P extends Presenter> extends BaseViewFragmen
         super.onActivityCreated(savedInstanceState);
         //不要在onCreate初始化loader 防止多个fragment 共享一个loader
         viewHelper.onCreate(getLoaderManager(),mActivity,savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        viewHelper.onPostCreate();
     }
 
     @Override

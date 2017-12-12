@@ -17,7 +17,7 @@ import com.example.hhj.loaderdemo.presenter.ViewHelper;
  */
 
 public abstract  class BaseActivity<P extends Presenter> extends BaseViewActivity {
-    private ViewHelper<P,BaseActivity> viewHelper=new ViewHelper(BaseActivity.this);
+    private ViewHelper<P> viewHelper=new ViewHelper(BaseActivity.this);
     public P getPresenter(){
         return viewHelper.getPresenter();
     }

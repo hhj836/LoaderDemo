@@ -10,7 +10,7 @@ import android.util.Log;
  * Created by hhj on 2017/12/11.
  */
 
-public class ViewHelper<P extends Presenter,ViewType> implements LoaderManager.LoaderCallbacks<P> {
+public class ViewHelper<P extends Presenter> implements LoaderManager.LoaderCallbacks<P> {
     public static final String PRESENTER_ID = "presenter_id";
     private   int LOADER_ID= (int) System.currentTimeMillis();
 
@@ -20,7 +20,7 @@ public class ViewHelper<P extends Presenter,ViewType> implements LoaderManager.L
     }
     public void onCreate(LoaderManager loaderManager,Context context,Bundle savedInstanceState){
         this.context=context;
-        Log.e("ViewHelper","LOADER_ID---"+LOADER_ID);
+        Log.e("ViewHelper","onCreate---"+view.getClass().getSimpleName());
         if(savedInstanceState!=null&&savedInstanceState.containsKey(PRESENTER_ID)){
             LOADER_ID=savedInstanceState.getInt(PRESENTER_ID);
         }
@@ -29,6 +29,7 @@ public class ViewHelper<P extends Presenter,ViewType> implements LoaderManager.L
     }
     public void onPostCreate(){
         presenter.onCreateView(view);
+        Log.e("ViewHelper","onPostCreate---"+view.getClass().getSimpleName());
 
     }
     public void onResume(){
@@ -48,11 +49,11 @@ public class ViewHelper<P extends Presenter,ViewType> implements LoaderManager.L
 
     }
 
-    ViewType view;
+    Object view;
     Context context;
 
 
-    public ViewHelper(ViewType view){
+    public ViewHelper(Object view){
         this.view=view;
 
     }
@@ -65,6 +66,7 @@ public class ViewHelper<P extends Presenter,ViewType> implements LoaderManager.L
 
     @Override
     public void onLoadFinished(Loader<P> loader, P data) {
+        Log.e("ViewHelper","onLoadFinished---"+view.getClass().getSimpleName());
         presenter=data;
     }
 

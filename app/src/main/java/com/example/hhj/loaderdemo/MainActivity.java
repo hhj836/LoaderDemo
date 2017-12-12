@@ -1,12 +1,10 @@
 package com.example.hhj.loaderdemo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.example.hhj.loaderdemo.activity.CollapsingTestActivity;
 import com.example.hhj.loaderdemo.base.BaseActivity;
 import com.example.hhj.loaderdemo.base.PresenterImp;
 import com.example.hhj.loaderdemo.fragment.FragmentMain;
@@ -23,17 +21,22 @@ public class MainActivity extends BaseActivity<MainPresenter>  {
     FrameLayout content;
     @OnClick(R.id.btn)
     public void onBtnClick(){
-        startActivity(new Intent().setClass(MainActivity.this,CollapsingTestActivity.class));
+       finish();
 
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d("MainPresenter","MainActivity--onCreate");
         super.onCreate(savedInstanceState);
         if(savedInstanceState==null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.content,new FragmentMain()).commit();
-            Log.d("MainPresenter","MainActivity--replace");
+               getSupportFragmentManager().beginTransaction().replace(R.id.content,new FragmentMain()).commit();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
 
     }
 
