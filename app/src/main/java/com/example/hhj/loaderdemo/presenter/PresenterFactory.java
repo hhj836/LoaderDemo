@@ -1,5 +1,7 @@
 package com.example.hhj.loaderdemo.presenter;
 
+import android.os.Bundle;
+
 /**
  * @author 侯慧杰
  * @date 2017/12/4
@@ -7,6 +9,6 @@ package com.example.hhj.loaderdemo.presenter;
  */
 
 
-public interface PresenterFactory<T extends Presenter> {
-    T create();
+public interface PresenterFactory<T extends Presenter,IView> {
+    T create(IView view,Bundle bundle);
 }

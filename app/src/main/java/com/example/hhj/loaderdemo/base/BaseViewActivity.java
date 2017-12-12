@@ -35,7 +35,6 @@ public abstract  class BaseViewActivity extends BaseSkinActivity {
 
 
     public abstract  int getLayoutId();
-    public abstract  void initView();
     //app bar 布局内容。如图：片沉浸式
     @Deprecated
     public int getAppBarContentResId(){
@@ -81,9 +80,6 @@ public abstract  class BaseViewActivity extends BaseSkinActivity {
         }
 
     }
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,8 +89,6 @@ public abstract  class BaseViewActivity extends BaseSkinActivity {
                     .fitsSystemWindows(true).init();
 
         }
-
-
         if(isContainsCommonViews()){
             setContentView(R.layout.ac_base_view);
             fm_content_base= (FrameLayout) findViewById(R.id.fm_content_base);
@@ -138,7 +132,6 @@ public abstract  class BaseViewActivity extends BaseSkinActivity {
             setContentView(getLayoutId());
         }
         ButterKnife.bind(this);
-        initView();
 
     }
     public void setTitleGone(){

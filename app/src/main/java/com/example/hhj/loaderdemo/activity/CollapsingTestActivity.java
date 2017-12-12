@@ -42,7 +42,7 @@ public class CollapsingTestActivity extends BaseViewActivity {
         return R.layout.ac_collapsing_test;
     }
 
-    @Override
+    /*@Override
     public void initView() {
         ImmersionBar.with(this).transparentStatusBar()
                .titleBar(toolbar).init();
@@ -50,5 +50,5 @@ public class CollapsingTestActivity extends BaseViewActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         collapsingToolbarLayout.setTitle("title");
 
-    }
+    }*/
 }
