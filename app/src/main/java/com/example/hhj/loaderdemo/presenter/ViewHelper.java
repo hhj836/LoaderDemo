@@ -20,17 +20,12 @@ public class ViewHelper<P extends Presenter> implements LoaderManager.LoaderCall
     }
     public void onCreate(LoaderManager loaderManager,Context context,Bundle savedInstanceState){
         this.context=context;
-        Log.e("ViewHelper","onCreate---"+view.getClass().getSimpleName());
+       // Log.e("ViewHelper","onCreate---"+view.getClass().getSimpleName());
         if(savedInstanceState!=null&&savedInstanceState.containsKey(PRESENTER_ID)){
             LOADER_ID=savedInstanceState.getInt(PRESENTER_ID);
         }
 
         loaderManager.initLoader(LOADER_ID,savedInstanceState,ViewHelper.this);
-    }
-    public void onPostCreate(){
-        presenter.onCreateView(view);
-        Log.e("ViewHelper","onPostCreate---"+view.getClass().getSimpleName());
-
     }
     public void onResume(){
         presenter.onResume();
@@ -66,8 +61,9 @@ public class ViewHelper<P extends Presenter> implements LoaderManager.LoaderCall
 
     @Override
     public void onLoadFinished(Loader<P> loader, P data) {
-        Log.e("ViewHelper","onLoadFinished---"+view.getClass().getSimpleName());
+       Log.e("ViewHelper","onLoadFinished---"+view.getClass().getSimpleName());
         presenter=data;
+        presenter.onCreateView(view);
     }
 
     @Override

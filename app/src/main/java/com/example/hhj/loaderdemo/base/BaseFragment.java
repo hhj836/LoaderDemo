@@ -2,6 +2,7 @@ package com.example.hhj.loaderdemo.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.example.hhj.loaderdemo.presenter.Presenter;
 import com.example.hhj.loaderdemo.presenter.ViewHelper;
@@ -15,17 +16,23 @@ public  abstract class BaseFragment<P extends Presenter> extends BaseViewFragmen
     public P getPresenter(){
         return viewHelper.getPresenter();
     }
+    boolean isLoaderInit=false;
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //不要在onCreate初始化loader 防止多个fragment 共享一个loader
-        viewHelper.onCreate(getLoaderManager(),mActivity,savedInstanceState);
+        if(!isLoaderInit){
+            viewHelper.onCreate(getLoaderManager(),mActivity,savedInstanceState);
+            isLoaderInit=true;
+        }
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        viewHelper.onPostCreate();
+
     }
 
     @Override

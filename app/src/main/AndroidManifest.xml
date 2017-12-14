@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.CollapsingTestActivity"></activity>
+        <activity android:name=".activity.TestListActivity"></activity>
     </application>
 
 </manifest>

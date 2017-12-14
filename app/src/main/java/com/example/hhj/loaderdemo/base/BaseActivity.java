@@ -29,13 +29,6 @@ public abstract  class BaseActivity<P extends Presenter> extends BaseViewActivit
     }
 
     @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        viewHelper.onPostCreate();
-
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         viewHelper.onResume();

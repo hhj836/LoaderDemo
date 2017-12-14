@@ -20,7 +20,7 @@ import com.example.hhj.loaderdemo.fragment.FragmentMain;
 public class MainPresenter extends Presenter<MainActivity> {
     int i=0;
     Handler handler=new Handler(Looper.getMainLooper());
-    boolean isload;
+    boolean isload=true;
     boolean run=true;
     public void  someMethod(){
 
@@ -28,10 +28,8 @@ public class MainPresenter extends Presenter<MainActivity> {
     @Override
     public void onCreate(MainActivity mainActivity,Bundle bundle) {
         super.onCreate(mainActivity,bundle);
-        Log.e("MainPresenter","onCreate---");
         if(bundle!=null){
             i=bundle.getInt("i");
-            Log.e("MainPresenter","onCreate---"+bundle.getInt(ViewHelper.PRESENTER_ID));
         }
 
 
@@ -40,7 +38,6 @@ public class MainPresenter extends Presenter<MainActivity> {
     @Override
     public void onCreateView(MainActivity mainActivity) {
         super.onCreateView(mainActivity);
-        Log.e("MainPresenter","onCreateView---");
         if(!isload){
             new Thread(){
                 @Override
@@ -56,7 +53,6 @@ public class MainPresenter extends Presenter<MainActivity> {
                             @Override
                             public void run() {
                                 getView().showNum(i);
-                                Log.e("MainPresenter","---"+i);
                             }
                         });
 
@@ -77,7 +73,7 @@ public class MainPresenter extends Presenter<MainActivity> {
     @Override
     public void onDestroyed() {
         run=false;
-        Log.e("MainPresenter","onDestroyed---");
+
 
     }
 }
