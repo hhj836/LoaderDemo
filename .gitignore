@@ -1,4 +1,5 @@
-
+/test
+/src/androidTest
 .gradle
 .DS_Store
 /captures

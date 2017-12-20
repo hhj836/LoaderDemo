@@ -25,19 +25,16 @@ public class TestListFragmentPresenter extends BaseListFragmentPresenter<TestLis
     @Override
     public void onCreate(TestListFragment view, Bundle savedInstanceState) {
         super.onCreate(view, savedInstanceState);
-        onRefresh();
+
         Log.e("TestListFragment","onCreate---");
     }
 
     @Override
     public void onCreateView(TestListFragment view) {
         super.onCreateView(view);
-        if(!init){
-            getView().getList().setAdapter(getAdapter());
-            init=true;
-        }else {
-            getAdapter().notifyDataSetChanged();
-        }
+        getView().getList().setAdapter(getAdapter());
+        onRefresh();
+        //getAdapter().notifyDataSetChanged();
 
         Log.e("TestListFragment","onCreateView---");
 

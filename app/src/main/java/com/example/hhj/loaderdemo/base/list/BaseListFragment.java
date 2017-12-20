@@ -38,6 +38,7 @@ public abstract class BaseListFragment<P extends BaseListFragmentPresenter> exte
         refreshLayout.setRefreshing(false);
     }
     public void initConfig(ListConfig listConfig) {
+        mList.setHasFixedSize(true);
         if(!listConfig.enableRefresh){
             refreshLayout.setEnabled(false);
         }else {

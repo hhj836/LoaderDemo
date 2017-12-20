@@ -41,6 +41,9 @@ public abstract  class BaseViewActivity extends BaseSkinActivity {
 
         return  0;
     }
+    public View  getContentView(){
+        return  null;
+    }
     /**
      * 是否设置系统栏颜色
      * @return
@@ -91,27 +94,27 @@ public abstract  class BaseViewActivity extends BaseSkinActivity {
         }
         if(isContainsCommonViews()){
             setContentView(R.layout.ac_base_view);
-            fm_content_base= (FrameLayout) findViewById(R.id.fm_content_base);
-            appbar_base= (AppBarLayout) findViewById(R.id.appbar_base);
+            fm_content_base= findViewById(R.id.fm_content_base);
+            appbar_base=  findViewById(R.id.appbar_base);
             if(getAppBarContentResId()!=0){
                 View appbarContent=View.inflate(BaseViewActivity.this,getAppBarContentResId(),null);
                 addView(appbar_base,appbarContent);
             }else {
                 View titleView=View.inflate(BaseViewActivity.this,R.layout.base_title_view,null);
                 addView(appbar_base,titleView);
-                btn_left_base= (RippleView) findViewById(R.id.btn_left_base);
+                btn_left_base=  findViewById(R.id.btn_left_base);
                 btn_left_base.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
                     @Override
                     public void onComplete(RippleView rippleView) {
                        // finish();
                     }
                 });
-                btn_right_base=(RippleView) findViewById(R.id.btn_right_base);
-                tv_left_base= (TextView) findViewById(R.id.tv_left_base);
+                btn_right_base= findViewById(R.id.btn_right_base);
+                tv_left_base= findViewById(R.id.tv_left_base);
 
-                tv_right_base= (TextView) findViewById(R.id.tv_right_base);
-                tv_title_base= (TextView) findViewById(R.id.tv_title_base);
-                rl_title_content_base= (RelativeLayout) findViewById(R.id.rl_title_content_base);
+                tv_right_base=  findViewById(R.id.tv_right_base);
+                tv_title_base=  findViewById(R.id.tv_title_base);
+                rl_title_content_base=  findViewById(R.id.rl_title_content_base);
                 if(getTitleContentResId()!=0){
                     View titleContent=getLayoutInflater().inflate(getTitleContentResId(),null);
                     rl_title_content_base.removeAllViews();
@@ -125,11 +128,20 @@ public abstract  class BaseViewActivity extends BaseSkinActivity {
             if(getLayoutId()!=0){
                 addView(fm_content_base,View.inflate(BaseViewActivity.this,getLayoutId(),null));
             }
+            if(getContentView()!=null){
+                addView(fm_content_base,getContentView());
+            }
             if(!isSlideTitleBar()){
                 disableTitleSlide();
             }
         }else {
-            setContentView(getLayoutId());
+            if(getLayoutId()!=0){
+                setContentView(getLayoutId());
+            }
+            if(getContentView()!=null){
+                setContentView(getContentView());
+            }
+
         }
         ButterKnife.bind(this);
 

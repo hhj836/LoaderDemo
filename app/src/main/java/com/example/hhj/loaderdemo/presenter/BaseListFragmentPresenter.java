@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -20,6 +21,8 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.subjects.PublishSubject;
 
 /**
  * Created by hhj on 2017/12/13.
@@ -42,8 +45,11 @@ implements BaseQuickAdapter.RequestLoadMoreListener,SwipeRefreshLayout.OnRefresh
 
         @Override
         public void onError(Throwable e) {
+
             adapter.loadMoreComplete();
             Toast.makeText(MyApplication.getInstance(),e.getMessage(),Toast.LENGTH_SHORT).show();
+
+
         }
 
         @Override
@@ -95,7 +101,8 @@ implements BaseQuickAdapter.RequestLoadMoreListener,SwipeRefreshLayout.OnRefresh
             getView().stopRefresh();
             adapter.getData().clear();
             if(ms.size()>0){
-                adapter.setNewData(ms);
+                adapter.getData().addAll(ms);
+                adapter.notifyDataSetChanged();;
                 page = 1;
             }else {
                 getView().showEmpty();

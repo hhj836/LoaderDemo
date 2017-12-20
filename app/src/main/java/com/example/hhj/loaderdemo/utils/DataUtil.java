@@ -14,7 +14,7 @@ import io.reactivex.annotations.NonNull;
  */
 
 public class DataUtil {
-    public static final  int PAGER_SIZE=20;
+    public static final  int PAGER_SIZE=100;
     public static Observable<List<Data>> getDataList(int page){
         if(page>3){
             return Observable.create(new ObservableOnSubscribe<List<Data>>() {
