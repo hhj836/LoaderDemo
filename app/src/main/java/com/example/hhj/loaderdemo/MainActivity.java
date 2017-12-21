@@ -31,6 +31,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.BehaviorSubject;
@@ -115,7 +116,7 @@ public class MainActivity extends BaseActivity<MainPresenter>  {
 
             }
         });
-        Observable.just(1l,2l).compose(trans).doOnNext(new Consumer<Long>() {
+       /* Observable.just(1l,2l).doOnNext(new Consumer<Long>() {
             @Override
             public void accept(Long aLong) throws Exception {
                 Log.d("trans","接收数据--"+aLong);
@@ -127,16 +128,17 @@ public class MainActivity extends BaseActivity<MainPresenter>  {
         }).doOnNext(new Consumer() {
             @Override
             public void accept(Object o) throws Exception {
-                Log.d("trans","doOnNext2--"+o.toString());
+                Log.d("trans","doOnNext--"+o.toString());
+
             }
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer() {
+        }).compose(trans).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Long>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
 
             }
 
             @Override
-            public void onNext(@NonNull Object o) {
+            public void onNext(@NonNull Long o) {
                 Log.d("trans","onNext--"+o.toString());
 
             }
@@ -157,7 +159,7 @@ public class MainActivity extends BaseActivity<MainPresenter>  {
                 sb.onNext("1");
                 Log.d("trans","onNext--结束");
             }
-        });
+        });*/
 
     }
 
